@@ -11,17 +11,15 @@
 # **************************************************************************** #
 
 NAME = philo
-
-SRC = main.c input.c terminate.c
-
-FLAGS =  -Wall -Wextra -Werror
+SRC = checks.c io.c main.c philosopher.c table.c terminate.c time.c
+FLAGS = -Wall -Wextra -Werror -Ofast
 
 
 
 all: $(NAME)
 
 $(NAME): $(SRC) philo.h
-	gcc $(SRC) $(FLAGS) -o $@
+	$(CC) $(SRC) $(FLAGS) -pthread -o $@
 
 clean:
 	/bin/rm -f *.o
@@ -31,4 +29,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY:  all clean fclean re
+.PHONY:  all clean fclean re debug
