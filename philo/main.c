@@ -6,7 +6,7 @@
 /*   By: fkernbac <fkernbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:02:55 by fkernbac          #+#    #+#             */
-/*   Updated: 2022/11/03 15:20:32 by fkernbac         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:03:00 by fkernbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,11 @@ int	main(int argc, char **argv)
 {
 	t_table	*t;
 
-	if (argc < 5 || argc > 6)
+	if (argc < 5 || argc > 6 || (argc == 6 && atoi_check(argv[5]) < 1))
 		return (error(1), EXIT_FAILURE);
 	t = NULL;
-	t = init_table(argv[1], argv[2], argv[3], argv[4]);
-	if (t == NULL)
-		return (EXIT_FAILURE);
-	if (argc == 6)
-		t->mandatory_eat = atoi_check(argv[5]);
-	if (fill_table(t) < 0)
+	t = init_table(argc, argv);
+	if (t == NULL || fill_table(t) < 0)
 		return (EXIT_FAILURE);
 	if (argc == 6)
 		monitor_meals(t);

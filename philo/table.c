@@ -6,7 +6,7 @@
 /*   By: fkernbac <fkernbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:40:44 by fkernbac          #+#    #+#             */
-/*   Updated: 2022/10/31 15:15:59 by fkernbac         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:03:12 by fkernbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ int	create_philosophers(t_table *table)
 //Creates philosophers and starts threads.
 int	fill_table(t_table *table)
 {
-	table->philosopher = \
-		malloc(sizeof(t_philo) * table->nr_philos);
+	table->philosopher = malloc(sizeof(t_philo) * table->nr_philos);
 	if (table->philosopher == NULL)
 		return (error(2));
 	gettimeofday(&table->start_time, NULL);
@@ -82,7 +81,7 @@ void	set_standard(t_table *t)
 }
 
 //Creates a new table and sets variables.
-t_table	*init_table(char *number, char *die, char *eat, char *sleep)
+t_table	*init_table(int argc, char **argv)
 {
 	t_table	*new;
 
@@ -91,10 +90,12 @@ t_table	*init_table(char *number, char *die, char *eat, char *sleep)
 	if (new == NULL)
 		return (error(2), NULL);
 	set_standard(new);
-	new->nr_philos = atoi_check(number);
-	new->die_time = atoi_check(die);
-	new->eat_time = atoi_check(eat);
-	new->sleep_time = atoi_check(sleep);
+	new->nr_philos = atoi_check(argv[1]);
+	new->die_time = atoi_check(argv[2]);
+	new->eat_time = atoi_check(argv[3]);
+	new->sleep_time = atoi_check(argv[4]);
+	if (argc == 6)
+		new->mandatory_eat = atoi_check(argv[5]);
 	if (new->nr_philos < 1 || new->nr_philos > 200 || new->die_time < 1 \
 		|| new->eat_time < 1 || new->sleep_time < 1)
 		return (error(1), free_table(new), NULL);

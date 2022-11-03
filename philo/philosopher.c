@@ -6,7 +6,7 @@
 /*   By: fkernbac <fkernbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:38:59 by fkernbac          #+#    #+#             */
-/*   Updated: 2022/10/31 18:30:01 by fkernbac         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:11:19 by fkernbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ void	*philo_start(void *arg)
 
 	philo = (t_philo *)arg;
 	even = philo->table->nr_philos % 2;
-	if (even != 0 && philo->number == philo->table->nr_philos)
+	if (even != 0 && philo->number == philo->table->nr_philos \
+		&& philo->table->nr_philos != 1)
 		millisleep(philo->table->eat_time * 1.5);
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: fkernbac <fkernbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:05:08 by fkernbac          #+#    #+#             */
-/*   Updated: 2022/10/31 18:17:23 by fkernbac         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:08:18 by fkernbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	terminate(t_table *table);
 void	free_table(t_table *table);
 int		unlock(pthread_mutex_t *m1, pthread_mutex_t *m2);
 //table
-t_table	*init_table(char *number, char *die, char *eat, char *sleep);
+t_table	*init_table(int argc, char **argv);
 int		fill_table(t_table *table);
 //philosopher
 void	*philo_start(void *arg);

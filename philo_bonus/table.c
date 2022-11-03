@@ -6,7 +6,7 @@
 /*   By: fkernbac <fkernbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:40:44 by fkernbac          #+#    #+#             */
-/*   Updated: 2022/10/26 17:55:29 by fkernbac         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:58:06 by fkernbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	fill_table(t_table *table)
 }
 
 //Creates a new table.
-t_table	*init_table(char *number, char *die, char *eat, char *sleep)
+t_table	*init_table(int argc, char **argv)
 {
 	t_table	*new;
 
@@ -72,12 +72,15 @@ t_table	*init_table(char *number, char *die, char *eat, char *sleep)
 	if (new == NULL)
 		error(2, NULL);
 	memset(new, 0, sizeof(t_table));
-	new->nr_philos = atoi_check(number, new);
-	if (new->nr_philos <= 0 || new->nr_philos > 200)
+	new->nr_philos = atoi_check(argv[1], new);
+	new->die_time = atoi_check(argv[2], new);
+	new->eat_time = atoi_check(argv[3], new);
+	new->sleep_time = atoi_check(argv[4], new);
+	if (argc == 6)
+		new->mandatory_eat = atoi_check(argv[5], new);
+	if (new->nr_philos <= 0 || new->nr_philos > 200 || new->die_time < 1 \
+		|| new->eat_time < 1 || new->sleep_time < 1)
 		error(1, new);
-	new->die_time = atoi_check(die, new);
-	new->eat_time = atoi_check(eat, new);
-	new->sleep_time = atoi_check(sleep, new);
 	new->shutdown = 0;
 	new->terminate = sem_open("/sem_term", O_CREAT | O_EXCL, S_IRWXU, 0);
 	new->full = sem_open("/sem_full", O_CREAT | O_EXCL, S_IRWXU, 0);

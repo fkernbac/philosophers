@@ -6,7 +6,7 @@
 /*   By: fkernbac <fkernbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:05:08 by fkernbac          #+#    #+#             */
-/*   Updated: 2022/11/03 16:07:10 by fkernbac         ###   ########.fr       */
+/*   Updated: 2022/11/03 18:08:39 by fkernbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		terminate_parent(t_table *table);
 int		terminate_child(t_table *t, int forks);
 int		error(int type, t_table *table);
 //table
-t_table	*init_table(char *number, char *die, char *eat, char *sleep);
+t_table	*init_table(int argc, char **argv);
 void	fill_table(t_table *table);
 //philosopher
 void	philo_start(void *arg);
