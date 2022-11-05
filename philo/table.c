@@ -6,7 +6,7 @@
 /*   By: fkernbac <fkernbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:40:44 by fkernbac          #+#    #+#             */
-/*   Updated: 2022/11/03 18:03:12 by fkernbac         ###   ########.fr       */
+/*   Updated: 2022/11/04 15:30:35 by fkernbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	fill_table(t_table *table)
 	gettimeofday(&table->start_time, NULL);
 	if (create_philosophers(table) != 0 || start_half(table, 0) != 0)
 		return (EXIT_FAILURE);
-	millisleep(table->eat_time / 2);
+	millisleep(50);
 	if (start_half(table, 1) != 0)
 		return (EXIT_FAILURE);
 	return (0);

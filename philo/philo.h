@@ -6,7 +6,7 @@
 /*   By: fkernbac <fkernbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:05:08 by fkernbac          #+#    #+#             */
-/*   Updated: 2022/11/03 18:08:18 by fkernbac         ###   ########.fr       */
+/*   Updated: 2022/11/04 15:11:15 by fkernbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <limits.h>
 # include <sys/time.h>
 # include <unistd.h>
-// # define malloc(x) NULL
 
 typedef struct s_table
 {

@@ -6,7 +6,7 @@
 /*   By: fkernbac <fkernbac@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:02:55 by fkernbac          #+#    #+#             */
-/*   Updated: 2022/11/03 18:03:00 by fkernbac         ###   ########.fr       */
+/*   Updated: 2022/11/04 15:27:52 by fkernbac         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	dead_already(t_table *t)
 			time = time_since(t->start_time);
 			if (set_death(t) == 0)
 			{
-				usleep(1000);
+				millisleep(1);
 				pthread_mutex_lock(&t->output_mutex);
 				printf("%i %i died\n", time, p[i].number);
 				pthread_mutex_unlock(&t->output_mutex);
@@ -77,7 +77,7 @@ void	monitor_meals(t_table *t)
 	i = -1;
 	while (full_already(t) == 0 && check_termination(t) == 0 \
 		&& dead_already(t) == 0)
-		usleep(5000);
+		millisleep(5);
 	while (++i < t->nr_philos)
 		pthread_join(t->philosopher[i].id, NULL);
 }
@@ -89,7 +89,7 @@ void	monitor(t_table *t)
 
 	i = -1;
 	while (check_termination(t) == 0 && dead_already(t) == 0)
-		usleep(5000);
+		millisleep(5);
 	while (++i < t->nr_philos)
 		pthread_join(t->philosopher[i].id, NULL);
 }
