@@ -23,6 +23,7 @@ void	philo_eat(t_philo *philo, t_table *table)
 	if (table->nr_philos == 1)
 	{
 		millisleep(table->die_time);
+		printf("%i %i died\n", time_since(table->start_time), philo->number);
 		sem_post(table->full);
 		sem_post(table->terminate);
 		terminate_child(table, 1);
@@ -34,7 +35,7 @@ void	philo_eat(t_philo *philo, t_table *table)
 	gettimeofday(&philo->meal_time, NULL);
 	time = time_since(table->start_time) - time_since(philo->meal_time);
 	sem_post(table->shutdown_mutex);
-	if (print_action_timed(philo, 'e', time) != 0)
+	if (print_action_eat(philo, 'e', time) != 0)
 		terminate_child(table, 2);
 	millisleep(table->eat_time);
 	sem_post(table->forks);
@@ -55,7 +56,7 @@ void	*check_others(void *arg)
 }
 
 //Checks if thread should die and sets shutdown variable.
-void	*check_me(void *arg)
+void	*check_myself(void *arg)
 {
 	t_philo	*philo;
 
@@ -68,7 +69,9 @@ void	*check_me(void *arg)
 	return (NULL);
 }
 
-//Thread routine.
+/* Creates 2 threads before running eating routine:
+term_check: listens for global termination command.
+starve_check: checks if the philosopher dead. */
 void	philo_start(void *arg)
 {
 	t_philo	*philo;
@@ -77,7 +80,7 @@ void	philo_start(void *arg)
 	philo = (t_philo *)arg;
 	table = philo->table;
 	if (pthread_create(&table->term_check, NULL, check_others, table) != 0 \
-		|| pthread_create(&table->starve_check, NULL, check_me, philo) != 0)
+		|| pthread_create(&table->starve_check, NULL, check_myself, philo) != 0)
 		error(5, table);
 	while (1)
 	{

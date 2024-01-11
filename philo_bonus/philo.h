@@ -72,7 +72,7 @@ int		am_i_dead(t_philo *philo);
 int		am_i_full(t_philo *philo);
 //input output
 int		print_action(t_philo *philo, char action);
-int		print_action_timed(t_philo *philo, char action, int time);
+int		print_action_eat(t_philo *philo, char action, int time);
 int		atoi_check(const char *s, t_table *table);
 
 #endif

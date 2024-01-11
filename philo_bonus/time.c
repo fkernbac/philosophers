@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-//Converts seconds and microseconds to milliseconds.
+/* Converts seconds and microseconds to milliseconds. */
 int	milliseconds(int seconds, int microseconds)
 {
 	int	milliseconds;
@@ -22,7 +22,7 @@ int	milliseconds(int seconds, int microseconds)
 	return (milliseconds);
 }
 
-//Returns present time since start in milliseconds.
+/* Returns present time since start in milliseconds. */
 int	time_since(struct timeval start)
 {
 	struct timeval	now;
@@ -35,7 +35,7 @@ int	time_since(struct timeval start)
 	return (milliseconds(seconds, microseconds));
 }
 
-//More accurate sleep function for milliseconds.
+/* More accurate sleep function for milliseconds. */
 void	millisleep(int milliseconds)
 {
 	struct timeval	start;

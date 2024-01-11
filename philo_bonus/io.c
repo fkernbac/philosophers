@@ -34,6 +34,7 @@ int	atoi_check(const char *s, t_table *table)
 	return ((int)n);
 }
 
+/* Prints console output protected by the print semaphore.*/
 int	print_action(t_philo *philo, char action)
 {
 	int	time;
@@ -54,7 +55,8 @@ int	print_action(t_philo *philo, char action)
 	return (0);
 }
 
-int	print_action_timed(t_philo *philo, char action, int time)
+/* Checks if the philosopher has died before printing the eat message.*/
+int	print_action_eat(t_philo *philo, char action, int time)
 {
 	sem_wait(philo->table->output_mutex);
 	if (check(philo->table) != 0)
