@@ -10,9 +10,12 @@ Proper memory management, including freeing allocated memory, is mandatory.
 Global variables are forbidden.
 
 **To run the program:**
-1. `make`
-2. `./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]`  for example: `./philo 4 410 200 200`
-
+```
+make
+./philo 4 410 200 200
+```
+The program parameters are:  
+`./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]`
 ## Mandatory Part (philo)
 Each philosopher is implemented as a thread.
 One fork is placed between each pair of philosophers, protected by a mutex.
